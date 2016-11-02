@@ -1,0 +1,25 @@
+{
+  "name": "better-fetch",
+  "version": "1.0.0",
+  "description": "A tiny ES6 fetch() wrapper that makes your life easier.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Swizec/better-fetch.git"
+  },
+  "keywords": [
+    "es6",
+    "json",
+    "api",
+    "fetch"
+  ],
+  "author": "Swizec Teller",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Swizec/better-fetch/issues"
+  },
+  "homepage": "https://github.com/Swizec/better-fetch#readme"
+}
