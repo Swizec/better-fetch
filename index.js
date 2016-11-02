@@ -1,25 +1,45 @@
 
-const wrappedFetch = function (defaultHeaders = {}) {
-    return function (url, params = {}) {
-        params.headers = Object.assign(
-            {},
-            params.headers,
-            defaultHeaders
-        );
-        params.credentials = 'same-origin';
+let defaultHeaders = {};
 
-        if (params.body
-            && typeof params.body !== 'string'
-            && !(params.body instanceof FormData)) {
+const wrappedFetch = function (url, params = {}) {
+    this.defaultHeaders = {};
 
-                let body = new FormData();
-                Object.entries(params.body).forEach(([k, v]) => body.append(k, v));
+    params.headers = Object.assign(
+        {},
+        headerDict(params.headers),
+        defaultHeaders
+    );
+    params.credentials = 'same-origin';
 
-                params.body = body;
-        }
+    if (params.body
+        && typeof params.body !== 'string'
+        && !(params.body instanceof FormData)) {
 
-        return fetch(url, params);
+            let body = new FormData();
+            Object.entries(params.body).forEach(([k, v]) => body.append(k, v));
+
+            params.body = body;
     }
+
+    return fetch(url, params);
 }
 
-export default wrappedFetch;
+const headerDict = function (headers) {
+    let dict = {};
+
+    if (headers instanceof Headers) {
+        for (let [key, value] of headers.entries()) {
+            dict[key] = value;
+        }
+    }else{
+        dict = headers;
+    }
+
+    return dict;
+}
+
+wrappedFetch.setDefaultHeaders = function (headers) {
+    defaultHeaders = headerDict(headers);
+}
+
+module.exports = wrappedFetch;
