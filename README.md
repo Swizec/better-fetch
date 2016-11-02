@@ -1,5 +1,7 @@
 # better-fetch
 
+A tiny ES6 fetch() wrapper that makes your life easier.
+
 Without changing the API, better-fetch **automatically includes cookies**, which would have saved me a very frustrating amount of time yesterday,  lets you **add default headers**, and you can **pass request body as a plain JS object**, none of that `FormData` nonsense.
 
 `better-fetch` works the same as `fetch()`, but is less cumbersome to use.
