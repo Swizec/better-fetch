@@ -9,7 +9,7 @@ const wrappedFetch = function (url, params = {}) {
         headerDict(params.headers),
         defaultHeaders
     );
-    params.credentials = 'same-origin';
+    params.credentials = params.credentials || 'same-origin';
 
     if (params.body
         && typeof params.body !== 'string'
