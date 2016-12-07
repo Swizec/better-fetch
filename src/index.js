@@ -2,8 +2,6 @@
 let defaultHeaders = {};
 
 const wrappedFetch = function (url, params = {}) {
-    this.defaultHeaders = {};
-
     params.headers = Object.assign(
         {},
         headerDict(params.headers),
