@@ -40,4 +40,11 @@ wrappedFetch.setDefaultHeaders = function (headers) {
     defaultHeaders = headerDict(headers);
 }
 
+wrappedFetch.throwErrors = function (response) {
+    if (!response.ok) {
+        throw Error(response.statusText);
+    }
+    return response;
+}
+
 module.exports = wrappedFetch;
