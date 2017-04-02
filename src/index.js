@@ -42,7 +42,9 @@ wrappedFetch.setDefaultHeaders = function (headers) {
 
 wrappedFetch.throwErrors = function (response) {
     if (!response.ok) {
-        throw Error(response);
+        const err = new Error(response.statusText);
+        err.response = response;
+        throw err;
     }
     return response;
 }
