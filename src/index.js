@@ -1,5 +1,8 @@
+const protocolRegexp = /^\w+\:\/\//
 
 let defaultHeaders = {};
+
+let defaultBaseURL = '';
 
 const wrappedFetch = function (url, params = {}) {
     params.headers = Object.assign(
@@ -18,6 +21,9 @@ const wrappedFetch = function (url, params = {}) {
 
             params.body = body;
     }
+
+    if (!protocolRegexp.test(url))
+        url = defaultBaseURL + url;
 
     return fetch(url, params);
 }
@@ -38,6 +44,10 @@ const headerDict = function (headers) {
 
 wrappedFetch.setDefaultHeaders = function (headers) {
     defaultHeaders = headerDict(headers);
+}
+
+wrappedFetch.setDefaultBaseURL = function(baseURL) {    
+    defaultBaseURL = baseURL;
 }
 
 wrappedFetch.throwErrors = function (response) {
